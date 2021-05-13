@@ -1,0 +1,24 @@
+:root {
+    font-size: calc(0.5em + 1vw);
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+}
+.container > div {
+    margin-top: 0.5rem;
+}
+
+.kanjiParagraph {
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    font-size: 6rem;
+    width: 50vmin;
+    height: 70vmin;
+    border-width: 1rem;
+    border-style: solid;
+    text-align: center;
+}
