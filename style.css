@@ -12,7 +12,7 @@
     margin-top: 0.5rem;
 }
 
-.kanjiParagraph {
+.divKanji {
     font-size: 6rem;
     width: 50vmin;
     height: 70vmin;
@@ -21,11 +21,11 @@
     text-align: center;
 }
 
-#kanjiArea {
+#tableKanji {
     width: 100%;
 }
 
-.kanjiParagraph td:nth-child(1),td:nth-child(3) {
+.divKanji td:nth-child(1),td:nth-child(3) {
     font-size: 0.8rem;
     width: 20%;
 }
