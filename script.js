@@ -1,13 +1,41 @@
 function displayKanjiName(event) {
     event.preventDefault();
-    const kanjiName = convertKatakanaNameToKanji(inputName.value);
 
-    kanjiParagraph.textContent = kanjiName;
+    kanjiParagraph.innerHTML = "";
 
+    const kanjis = [...inputName.value].map((katakana) => getKanji(katakana));
+    const rows = kanjis.map((kanji) => createKanjiRow(kanji))
+
+    rows.forEach(row => kanjiParagraph.appendChild(row))
+}
+
+function createKanjiRow(kanji) {
+    const katakanaColumn = document.createElement('td');
+    katakanaColumn.textContent = kanji.katakana;
+
+    const kanjiColumn = document.createElement('td');
+    kanjiColumn.textContent = kanji.kanji
+
+    const meaningColumn = document.createElement('td');
+    meaningColumn.textContent = kanji.meaning
+
+    const newRow = document.createElement('tr');
+    newRow.append(katakanaColumn, kanjiColumn, meaningColumn)
+
+    return newRow;
 }
 
 function convertKatakanaNameToKanji(katakanaName) {
-    return [...katakanaName].map((katakana) => getRandomElement(data[katakana])).join('')
+    return [...katakanaName].map((katakana) => getRandomElement(data[katakana]).literal).join('')
+}
+
+function getKanji(katakana) {
+    const randomKanji = getRandomElement(data[katakana])
+    return {
+        'katakana': katakana,
+        'kanji': randomKanji.literal,
+        'meaning': randomKanji.meaning
+    }
 }
 
 function getRandomElement(arrayObject) {

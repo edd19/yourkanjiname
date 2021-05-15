@@ -13,12 +13,19 @@
 }
 
 .kanjiParagraph {
-    writing-mode: vertical-lr;
-    text-orientation: upright;
     font-size: 6rem;
     width: 50vmin;
     height: 70vmin;
     border-width: 1rem;
     border-style: solid;
     text-align: center;
+}
+
+#kanjiArea {
+    width: 100%;
+}
+
+.kanjiParagraph td:nth-child(1),td:nth-child(3) {
+    font-size: 0.8rem;
+    width: 20%;
 }
