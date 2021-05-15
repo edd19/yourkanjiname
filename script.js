@@ -4,7 +4,14 @@ function displayKanjiName(event) {
 
     const kanjis = [...inputName.value].map((katakana) => getKanji(katakana));
     const rows = kanjis.map((kanji) => createKanjiRow(kanji))
+
+    adaptKanjiAreaFontSize(kanjiArea, kanjis.length)
     rows.forEach(row => KanjiTable.appendChild(row))
+}
+
+function adaptKanjiAreaFontSize(kanjiArea, numberKanji) {
+    const tableCellFontSize = window.getComputedStyle(kanjiArea).width
+    kanjiArea.style.fontSize = `${parseFloat(tableCellFontSize)/(numberKanji+0.5) }px`
 }
 
 function createKanjiRow(kanji) {
