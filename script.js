@@ -1,33 +1,25 @@
 function displayKanjiName(event) {
     event.preventDefault();
-    KanjiTable.innerHTML = "";
+    kanjiFrame.innerHTML = "";
 
     const kanjis = [...inputName.value].map((katakana) => getKanji(katakana));
-    const rows = kanjis.map((kanji) => createKanjiRow(kanji))
-
-    adaptKanjiAreaFontSize(kanjiArea, kanjis.length)
-    rows.forEach(row => KanjiTable.appendChild(row))
+    kanjis.forEach(kanji => appendKanjiRow(kanji, kanjiFrame))
 }
 
-function adaptKanjiAreaFontSize(kanjiArea, numberKanji) {
-    const tableCellFontSize = window.getComputedStyle(kanjiArea).width
-    kanjiArea.style.fontSize = `${parseFloat(tableCellFontSize)/(numberKanji+0.5) }px`
-}
-
-function createKanjiRow(kanji) {
-    const katakanaColumn = document.createElement('td');
+function appendKanjiRow(kanji, kanjiFrame) {
+    const katakanaColumn = document.createElement('div');
+    katakanaColumn.classList.add("katakana");
     katakanaColumn.textContent = kanji.katakana;
 
-    const kanjiColumn = document.createElement('td');
+    const kanjiColumn = document.createElement('div');
+    kanjiColumn.classList.add('kanji');
     kanjiColumn.textContent = kanji.kanji
 
-    const meaningColumn = document.createElement('td');
+    const meaningColumn = document.createElement('div');
+    meaningColumn.classList.add('meaning')
     meaningColumn.textContent = kanji.meaning
 
-    const newRow = document.createElement('tr');
-    newRow.append(katakanaColumn, kanjiColumn, meaningColumn)
-
-    return newRow;
+    kanjiFrame.append(katakanaColumn, kanjiColumn, meaningColumn);
 }
 
 function getKanji(katakana) {
@@ -43,7 +35,7 @@ function saveKanjiName() {
     const config = {
         logging: false
     }
-    html2canvas(kanjiArea, config).then(
+    html2canvas(kanjiFrame, config).then(
         canvas => {
             const link = document.createElement('a');
             link.download = 'name.png';
@@ -56,8 +48,7 @@ function saveKanjiName() {
 
 const form = document.getElementById("form");
 const inputName = document.getElementById("inputName");
-const KanjiTable = document.getElementById('tableKanji');
-const kanjiArea = document.getElementsByClassName('divKanji')[0]
+const kanjiFrame = document.getElementById('kanjiFrame');
 const btnSave = document.getElementById('btnSave');
 
 form.addEventListener('submit', displayKanjiName);

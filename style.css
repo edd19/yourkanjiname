@@ -12,29 +12,29 @@
     margin-top: 0.5rem;
 }
 
-.divKanji {
+.frame {
     width: 50vmin;
     height: 70vmin;
     border-width: 1rem;
     border-style: solid;
-    margin: 5em;
     text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-auto-rows: 1fr;
+    align-content: center;
+    padding: 0.5em;
 }
 
-#tableKanji {
-    width: 100%;
-    height: 100%;
+.kanji {
+    font-size: calc(6vw);
 }
 
-.divKanji td:nth-child(1),td:nth-child(3) {
-    width: 25%;
+.katakana {
+    text-align: right;
     font-size: 0.8rem;
 }
 
-.divKanji td:nth-child(1) {
-    text-align: right;
-}
-
-.divKanji td:nth-child(3) {
+.meaning {
     text-align: left;
+    font-size: 0.8rem;
 }
